@@ -1,1 +1,2 @@
-include ':sample', ':svg-loader-core', ':svg-loader-glide4'
+include ':core', ':glide4', ':glide3'
+include ':sample-glide4', ':sample-glide3'
