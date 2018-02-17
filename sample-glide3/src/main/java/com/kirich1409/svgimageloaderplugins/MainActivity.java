@@ -10,8 +10,8 @@ import com.bumptech.glide.load.model.StreamEncoder;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.load.resource.file.FileToStreamDecoder;
 import com.caverock.androidsvg.SVG;
-import com.kirich1409.svgloader.glide3.InputStreamSvgDecoder;
-import com.kirich1409.svgloader.glide3.SvgGlideDrawableTranscoder;
+import com.kirich1409.svgloader.glide.InputStreamSvgDecoder;
+import com.kirich1409.svgloader.glide.SvgGlideDrawableTranscoder;
 
 import java.io.InputStream;
 

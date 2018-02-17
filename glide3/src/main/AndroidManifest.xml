@@ -5,7 +5,7 @@
 
     <application>
         <meta-data
-            android:name="com.kirich1409.svgloader.glide3.SvgGlideModule"
+            android:name="com.kirich1409.svgloader.glide.SvgGlideModule"
             android:value="GlideModule"
             />
     </application>
