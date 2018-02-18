@@ -1,2 +1,1 @@
-include ':core', ':glide4', ':glide3'
-include ':sample-glide4', ':sample-glide3'
+include ':library', ':sample'
