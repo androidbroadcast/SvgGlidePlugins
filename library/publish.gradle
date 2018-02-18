@@ -1,0 +1,67 @@
+apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+// Create the pom configuration:
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "kirich1409"
+            name "Kirill Rozov"
+            email "kirich1409@gmail.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/kirich1409/SvgGlidePlugins.git"
+    }
+}
+
+publishing {
+    publications {
+        mavenAar(MavenPublication) {
+            from components.android
+            groupId 'com.kirich1409.svgplugin'
+            artifactId 'glide4'
+            version '1.0.0-beta1'
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('name', 'SvgGlide4Plugin')
+                root.appendNode('url', 'https://github.com/kirich1409/SvgGlidePlugins')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    user = bintray_user
+    key = bintray_apikey
+    publications = ['mavenAar']
+
+    pkg {
+        repo = 'maven'
+        name = 'svg-glide-plugin'
+        userOrg = bintray_user_org
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/kirich1409/SvgGlidePlugins.git'
+
+        githubRepo = 'kirich1409/SvgGlidePlugins' //Optional Github repository
+        githubReleaseNotesFile = 'README.md' //Optional Github readme file
+
+        version {
+            name = '1.0.0-beta1'
+            websiteUrl = 'https://github.com/kirich1409/SvgGlidePlugins'
+            issueTrackerUrl = 'https://github.com/kirich1409/SvgGlidePlugins/issues'
+            vcsUrl = 'https://github.com/kirich1409/SvgGlidePlugins.git'
+            licenses = ['Apache-2.0']
+            labels = ['gear', 'gore', 'gorilla']
+        }
+    }
+}

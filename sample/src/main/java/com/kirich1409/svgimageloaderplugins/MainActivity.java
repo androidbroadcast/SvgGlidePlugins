@@ -8,6 +8,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String HOMER_URL = "http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
