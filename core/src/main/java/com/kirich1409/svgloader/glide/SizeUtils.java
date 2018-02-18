@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -14,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 final class SizeUtils {
 
     public static int getSize(@NonNull ByteBuffer buffer) {

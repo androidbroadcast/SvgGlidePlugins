@@ -2,9 +2,11 @@ package com.kirich1409.svgloader.glide;
 
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 
 import com.caverock.androidsvg.SVG;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 abstract class BaseSvgResource {
 
     private final SVG mSvg;
@@ -55,6 +57,9 @@ abstract class BaseSvgResource {
     }
 
     public String toString() {
-        return "BaseSvgResource{ width=" + mWidth + ", height=" + mHeight + ", size=" + mSize + '}';
+        return getClass().getSimpleName() +
+                "{width=" + mWidth + ',' +
+                " height=" + mHeight + ',' +
+                " size=" + mSize + '}';
     }
 }

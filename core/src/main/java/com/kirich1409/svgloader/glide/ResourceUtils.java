@@ -6,10 +6,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
+import android.support.annotation.RestrictTo;
 
 import java.util.List;
 
-public final class ResourceUtils {
+@RestrictTo(RestrictTo.Scope.LIBRARY)
+final class ResourceUtils {
 
     private static final int NAME_URI_PATH_SEGMENTS = 2;
     private static final int ID_PATH_SEGMENTS = 1;

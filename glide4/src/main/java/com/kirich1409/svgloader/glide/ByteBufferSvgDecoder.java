@@ -17,16 +17,8 @@ final class ByteBufferSvgDecoder extends SvgDecoder<ByteBuffer> {
 
     @Override
     SVG loadSvg(ByteBuffer source, int width, int height, @NonNull Options options) throws SVGParseException {
-        InputStream is = null;
-        try {
-            try {
-                is = ByteBufferUtil.toStream(source);
-                return SVG.getFromInputStream(is);
-            } finally {
-                if (is != null) {
-                    is.close();
-                }
-            }
+        try (InputStream is = ByteBufferUtil.toStream(source)) {
+            return SVG.getFromInputStream(is);
         } catch (IOException e) {
             throw new SVGParseException(e);
         }
