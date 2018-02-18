@@ -23,11 +23,11 @@ abstract class SvgDecoder<T> implements ResourceDecoder<T, SVG> {
 
     @Nullable
     @Override
-    public Resource<SVG> decode(
-            @NonNull T source, int width, int height, @NonNull Options options) throws IOException {
+    public Resource<SVG> decode(@NonNull T source, int width, int height, @NonNull Options options)
+            throws IOException {
         try {
-            SVG svg = loadSvg(source, width, height, options);
             int sourceSize = getSize(source);
+            SVG svg = loadSvg(source, width, height, options);
             return new SvgResource(svg, width, height, sourceSize);
         } catch (SVGParseException e) {
             throw new IOException("Cannot load SVG", e);
@@ -37,5 +37,6 @@ abstract class SvgDecoder<T> implements ResourceDecoder<T, SVG> {
     @IntRange(from = 0)
     protected abstract int getSize(@NonNull T source) throws IOException;
 
-    abstract SVG loadSvg(T source, int width, int height, @NonNull Options options) throws SVGParseException;
+    abstract SVG loadSvg(T source, int width, int height, @NonNull Options options)
+            throws SVGParseException;
 }

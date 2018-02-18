@@ -13,13 +13,9 @@ import java.io.IOException;
 final class StringSvgDecoder extends SvgDecoder<String> {
 
     @Override
-    SVG loadSvg(String source, int width, int height, @NonNull Options options) throws SVGParseException {
+    SVG loadSvg(String source, int width, int height, @NonNull Options options)
+            throws SVGParseException {
         return SVG.getFromString(source);
-    }
-
-    @Override
-    public boolean handles(@NonNull String source, @NonNull Options options) {
-        return source.contains("<svg");
     }
 
     @Override

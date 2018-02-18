@@ -16,7 +16,8 @@ import java.nio.ByteBuffer;
 final class ByteBufferSvgDecoder extends SvgDecoder<ByteBuffer> {
 
     @Override
-    SVG loadSvg(ByteBuffer source, int width, int height, @NonNull Options options) throws SVGParseException {
+    SVG loadSvg(ByteBuffer source, int width, int height, @NonNull Options options)
+            throws SVGParseException {
         try (InputStream is = ByteBufferUtil.toStream(source)) {
             return SVG.getFromInputStream(is);
         } catch (IOException e) {

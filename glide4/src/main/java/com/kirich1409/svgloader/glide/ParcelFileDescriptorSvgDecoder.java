@@ -16,12 +16,14 @@ final class ParcelFileDescriptorSvgDecoder extends SvgDecoder<ParcelFileDescript
     private final FileDescriptorSvgDecoder mDecoder = new FileDescriptorSvgDecoder();
 
     @Override
-    public boolean handles(@NonNull ParcelFileDescriptor source, @NonNull Options options) throws IOException {
+    public boolean handles(@NonNull ParcelFileDescriptor source, @NonNull Options options)
+            throws IOException {
         return mDecoder.handles(source.getFileDescriptor(), options);
     }
 
     @Override
-    SVG loadSvg(ParcelFileDescriptor source, int width, int height, @NonNull Options options) throws SVGParseException {
+    SVG loadSvg(ParcelFileDescriptor source, int width, int height, @NonNull Options options)
+            throws SVGParseException {
         return mDecoder.loadSvg(source.getFileDescriptor(), width, height, options);
     }
 

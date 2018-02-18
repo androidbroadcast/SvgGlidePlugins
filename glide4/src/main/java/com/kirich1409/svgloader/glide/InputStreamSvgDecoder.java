@@ -14,7 +14,8 @@ import java.io.InputStream;
 final class InputStreamSvgDecoder extends SvgDecoder<InputStream> {
 
     @Override
-    SVG loadSvg(@NonNull InputStream source, int width, int height, @NonNull Options options) throws SVGParseException {
+    SVG loadSvg(@NonNull InputStream source, int width, int height, @NonNull Options options)
+            throws SVGParseException {
         return SVG.getFromInputStream(source);
     }
 

@@ -2,6 +2,7 @@ package com.kirich1409.svgloader.glide;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
@@ -42,26 +43,28 @@ final class SvgUtils {
         }
     }
 
-    public static void scaleDocumentSize(@NonNull BaseSvgResource resource) {
-        SVG svg = resource.get();
-        float scale = Math.min(
-                resource.getWidth() / svg.getDocumentWidth(),
-                resource.getHeight() / svg.getDocumentHeight()
-        );
-        if (scale >= 0) {
-            svg.setDocumentWidth(svg.getDocumentWidth() * scale);
-            svg.setDocumentHeight(svg.getDocumentHeight() * scale);
-        }
+    public static void scaleDocumentSize(
+            @NonNull SVG svg,
+            @FloatRange(from = 0, fromInclusive = false) float scale
+    ) {
+        svg.setDocumentWidth(svg.getDocumentWidth() * scale);
+        svg.setDocumentHeight(svg.getDocumentHeight() * scale);
+    }
+
+    @NonNull
+    public static Bitmap toBitmap(
+            @NonNull SVG svg, @NonNull BitmapProvider provider, @NonNull Bitmap.Config config) {
+        int outImageWidth = Math.round(svg.getDocumentWidth());
+        int outImageHeight = Math.round(svg.getDocumentHeight());
+        Bitmap bitmap = provider.get(outImageWidth, outImageHeight, config);
+        Canvas canvas = new Canvas(bitmap);
+        svg.renderToCanvas(canvas);
+        return bitmap;
     }
 
     @NonNull
     public static Bitmap toBitmap(@NonNull SVG svg, @NonNull BitmapProvider provider) {
-        int outImageWidth = Math.round(svg.getDocumentWidth());
-        int outImageHeight = Math.round(svg.getDocumentHeight());
-        Bitmap bitmap = provider.get(outImageWidth, outImageHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        svg.renderToCanvas(canvas);
-        return bitmap;
+        return toBitmap(svg, provider, Bitmap.Config.ARGB_8888);
     }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY)
