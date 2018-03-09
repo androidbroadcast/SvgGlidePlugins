@@ -1,4 +1,5 @@
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-SvgGlidePlugin-green.svg?style=flat )]( https://android-arsenal.com/details/1/6812 )
+[![JCenter Download](https://api.bintray.com/packages/kirich1409/maven/svg-glide-plugin/images/download.svg) ](https://bintray.com/kirich1409/maven/svg-glide-plugin/_latestVersion)
 
 # SvgImageLoaderPlugins
 Plugin for load SVG in Glide 4.
