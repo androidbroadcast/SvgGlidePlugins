@@ -2,8 +2,13 @@
 Plugin for load SVG in Glide 4.
 
 Grab the latest via Gradle:
+```
+repository {
+   jcenter()
+}
 
-    implementation 'com.kirich1409.svgplugin:glide4:1.0.0-beta1'
+implementation 'com.kirich1409.svgplugin:glide4:1.0.0-beta2'
+```
 
 Library requires Android SDK 15+
 
