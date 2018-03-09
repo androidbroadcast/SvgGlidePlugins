@@ -34,7 +34,7 @@ publishing {
             from components.android
             groupId 'com.kirich1409.svgplugin'
             artifactId 'glide4'
-            version '1.0.0-beta2'
+            version rootProject.ext.versionName
             pom.withXml {
                 def root = asNode()
                 root.appendNode('name', 'SvgGlide4Plugin')
@@ -55,20 +55,20 @@ bintray {
     pkg {
         repo = 'maven'
         name = 'svg-glide-plugin'
+        desc = "Glide 4 Module which adds possibility to load SVG"
         userOrg = bintray_user_org
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/kirich1409/SvgGlidePlugins.git'
+        websiteUrl = 'https://github.com/kirich1409/SvgGlidePlugins'
+        issueTrackerUrl = 'https://github.com/kirich1409/SvgGlidePlugins/issues'
+        labels = ['glide', 'svg']
 
         githubRepo = 'kirich1409/SvgGlidePlugins' //Optional Github repository
         githubReleaseNotesFile = 'README.md' //Optional Github readme file
 
         version {
-            name = '1.0.0-beta2'
-            websiteUrl = 'https://github.com/kirich1409/SvgGlidePlugins'
-            issueTrackerUrl = 'https://github.com/kirich1409/SvgGlidePlugins/issues'
-            vcsUrl = 'https://github.com/kirich1409/SvgGlidePlugins.git'
-            licenses = ['Apache-2.0']
-            labels = ['gear', 'gore', 'gorilla']
+            name = rootProject.ext.versionName
+            vcsTag = rootProject.ext.versionName
         }
     }
 }
