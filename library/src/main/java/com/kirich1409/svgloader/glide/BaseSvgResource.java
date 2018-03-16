@@ -6,6 +6,8 @@ import android.support.annotation.RestrictTo;
 
 import com.caverock.androidsvg.SVG;
 
+import java.io.IOException;
+
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 abstract class BaseSvgResource {
 
@@ -19,7 +21,7 @@ abstract class BaseSvgResource {
             @IntRange(from = 1) int width,
             @IntRange(from = 1) int height,
             @IntRange(from = 0) int size
-    ) {
+    ) throws IOException {
         SvgUtils.fix(svg);
         mSvg = svg;
         mWidth = width;

@@ -2,6 +2,7 @@ package com.kirich1409.svgloader.glide;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
@@ -21,13 +22,35 @@ import java.io.InputStream;
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 final class SvgUtils {
 
-    public static void fix(@NonNull SVG svg) {
-        if (svg.getDocumentViewBox() == null) {
-            svg.setDocumentViewBox(0F, 0F, svg.getDocumentWidth(), svg.getDocumentHeight());
+    static void fix(@NonNull SVG svg) throws IOException {
+        RectF viewBox = svg.getDocumentViewBox();
+        float docWidth = svg.getDocumentWidth();
+        float docHeight = svg.getDocumentHeight();
+
+        if (viewBox == null) {
+            if (docWidth > 0 && docHeight > 0) {
+                svg.setDocumentViewBox(0F, 0F, docWidth, docHeight);
+            } else {
+                throw new IOException("SVG must have specify 'width' & 'height' tags or 'viewbox'");
+            }
+
+        } else if (docWidth <= 0 && docHeight <= 0) {
+            svg.setDocumentWidth(viewBox.width());
+            svg.setDocumentHeight(viewBox.height());
+
+        } else if (docWidth <= 0) {
+            svg.setDocumentWidth(aspectRation(viewBox) * docHeight);
+
+        } else if (docHeight <= 0) {
+            svg.setDocumentHeight(docWidth / aspectRation(viewBox));
         }
     }
 
-    public static SVG getSvg(@NonNull File file) throws SVGParseException, IOException {
+    private static float aspectRation(@NonNull RectF rect) {
+        return rect.width() / rect.height();
+    }
+
+    static SVG getSvg(@NonNull File file) throws SVGParseException, IOException {
         if (!file.exists()) {
             throw new FileNotFoundException("File: '" + file.getAbsolutePath() + "' not exists");
         }
@@ -37,13 +60,15 @@ final class SvgUtils {
         }
     }
 
-    public static SVG getSvg(@NonNull FileDescriptor descriptor) throws SVGParseException, IOException {
+    static SVG getSvg(@NonNull FileDescriptor descriptor)
+            throws SVGParseException, IOException {
+
         try (InputStream is = new BufferedInputStream(new FileInputStream(descriptor))) {
             return SVG.getFromInputStream(is);
         }
     }
 
-    public static void scaleDocumentSize(
+    static void scaleDocumentSize(
             @NonNull SVG svg,
             @FloatRange(from = 0, fromInclusive = false) float scale
     ) {
@@ -52,8 +77,11 @@ final class SvgUtils {
     }
 
     @NonNull
-    public static Bitmap toBitmap(
-            @NonNull SVG svg, @NonNull BitmapProvider provider, @NonNull Bitmap.Config config) {
+    static Bitmap toBitmap(
+            @NonNull SVG svg,
+            @NonNull BitmapProvider provider,
+            @NonNull Bitmap.Config config
+    ) {
         int outImageWidth = Math.round(svg.getDocumentWidth());
         int outImageHeight = Math.round(svg.getDocumentHeight());
         Bitmap bitmap = provider.get(outImageWidth, outImageHeight, config);
@@ -62,16 +90,15 @@ final class SvgUtils {
         return bitmap;
     }
 
-    @NonNull
-    public static Bitmap toBitmap(@NonNull SVG svg, @NonNull BitmapProvider provider) {
-        return toBitmap(svg, provider, Bitmap.Config.ARGB_8888);
-    }
-
     @RestrictTo(RestrictTo.Scope.LIBRARY)
-    public interface BitmapProvider {
+    interface BitmapProvider {
 
         @NonNull
-        Bitmap get(@IntRange(from = 0) int width, @IntRange(from = 0) int height, @NonNull Bitmap.Config config);
+        Bitmap get(
+                @IntRange(from = 0) int width,
+                @IntRange(from = 0) int height,
+                @NonNull Bitmap.Config config
+        );
     }
 
     private SvgUtils() {

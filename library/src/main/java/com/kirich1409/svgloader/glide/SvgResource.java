@@ -7,6 +7,8 @@ import android.support.annotation.RestrictTo;
 import com.bumptech.glide.load.engine.Resource;
 import com.caverock.androidsvg.SVG;
 
+import java.io.IOException;
+
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 final class SvgResource extends BaseSvgResource implements Resource<SVG> {
 
@@ -15,7 +17,7 @@ final class SvgResource extends BaseSvgResource implements Resource<SVG> {
             @IntRange(from = 1) int width,
             @IntRange(from = 1) int height,
             @IntRange(from = 0) int size
-    ) {
+    ) throws IOException {
         super(svg, width, height, size);
     }
 }
