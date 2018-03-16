@@ -31,4 +31,6 @@ ext {
     minSdkVersion = 14
 
     glideVersion = '4.6.1'
+
+    versionName = '1.0.0-beta2'
 }

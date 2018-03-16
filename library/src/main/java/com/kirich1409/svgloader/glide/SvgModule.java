@@ -18,6 +18,9 @@ import java.io.FileDescriptor;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
+/**
+ * Register components for load SVG from different sources and convert it to bitmap.
+ */
 @GlideModule
 public final class SvgModule extends LibraryGlideModule {
 
