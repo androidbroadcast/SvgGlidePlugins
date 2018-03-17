@@ -16,11 +16,16 @@
 
 package com.kirich1409.svgimageloaderplugins;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,13 +35,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView imageView = findViewById(R.id.sample_image);
+        final ImageView imageView = findViewById(R.id.sample_image);
 
         GlideApp.with(this)
-                .load(R.raw.bart_simpson)
-                .apply(GlideOptions.fitCenterTransform())
+                .load("https://mobchn.top/static/svg/flags/1.svg")
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
-                .into(imageView);
+                .into(new SimpleTarget< Drawable>() {
+
+
+
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        imageView.setImageDrawable(resource);
+                    }
+                });
     }
 }

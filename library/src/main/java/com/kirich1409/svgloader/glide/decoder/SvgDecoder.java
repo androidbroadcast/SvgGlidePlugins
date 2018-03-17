@@ -24,9 +24,11 @@ import android.support.annotation.RestrictTo;
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.request.target.Target;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGParseException;
 import com.kirich1409.svgloader.glide.SvgResource;
+import com.kirich1409.svgloader.glide.utils.SvgUtils;
 
 import java.io.IOException;
 
@@ -45,10 +47,27 @@ public abstract class SvgDecoder<T> implements ResourceDecoder<T, SVG> {
         try {
             int sourceSize = getSize(source);
             SVG svg = loadSvg(source, width, height, options);
-            return new SvgResource(svg, width, height, sourceSize);
+            SvgUtils.fix(svg);
+            int[] sizes = getResourceSize(svg, width, height);
+            return new SvgResource(svg, sizes[0], sizes[1], sourceSize);
         } catch (SVGParseException e) {
             throw new IOException("Cannot load SVG", e);
         }
+    }
+
+    private static int[] getResourceSize(@NonNull SVG svg, int width, int height) {
+        int[] sizes = new int[]{width, height};
+        if (width == Target.SIZE_ORIGINAL && height == Target.SIZE_ORIGINAL) {
+            sizes[0] = Math.round(svg.getDocumentWidth());
+            sizes[1] = Math.round(svg.getDocumentHeight());
+
+        } else if (width == Target.SIZE_ORIGINAL) {
+            sizes[0] = Math.round(svg.getDocumentAspectRatio() * height);
+
+        } else if (height == Target.SIZE_ORIGINAL) {
+            sizes[1] = Math.round(width / svg.getDocumentAspectRatio());
+        }
+        return sizes;
     }
 
     @IntRange(from = 0)
