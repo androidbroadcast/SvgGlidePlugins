@@ -19,17 +19,13 @@ branches:
   only:
   - master
 
-script:
-  - .scripts/check.sh
-
-after_success:
-  - .scripts/publish.sh
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
 cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
+script:
+  - ./script/check.sh
+
+after_success:
+  - ./script/publish.sh
