@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-package com.kirich1409.svgimageloaderplugins;
+package com.kirich1409.svgloader.glide.decoder;
 
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
+import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 
-@GlideModule
-public class SampleGlideModule extends AppGlideModule {
+import com.bumptech.glide.load.Options;
+import com.caverock.androidsvg.SVG;
+
+@RestrictTo(RestrictTo.Scope.LIBRARY)
+public final class UnitSVGDecoder extends SvgDecoder<SVG> {
 
     @Override
-    public boolean isManifestParsingEnabled() {
-        return false;
+    SVG loadSvg(SVG source, int width, int height, @NonNull Options options) {
+        return source;
+    }
+
+    @Override
+    protected int getSize(@NonNull SVG source) {
+        return 0;
     }
 }

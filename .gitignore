@@ -1,8 +1,12 @@
+# IDEA
 *.iml
+.idea/*
+!.idea/codeStyles/
+!.idea/copyright/
+!.idea/sonarlint.xml
+
 .gradle
 /local.properties
-/.idea
-.DS_Store
 /build
 /captures
 .externalNativeBuild
