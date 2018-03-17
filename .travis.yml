@@ -1,0 +1,35 @@
+language: android
+jdk: oraclejdk8
+
+android:
+  components:
+    - tools
+    - platform-tools
+
+    # The BuildTools version used by your project
+    - build-tools-27.0.3
+
+    # The SDK version used to compile your project
+    - android-27
+
+licenses:
+ - android-sdk-license-.+
+
+branches:
+  only:
+  - master
+
+script:
+  - .scripts/check.sh
+
+after_success:
+  - .scripts/publish.sh
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
