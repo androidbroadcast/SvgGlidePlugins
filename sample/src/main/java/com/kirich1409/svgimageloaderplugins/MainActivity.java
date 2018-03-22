@@ -16,39 +16,52 @@
 
 package com.kirich1409.svgimageloaderplugins;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String HOMER_URL = "http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg";
+    @Nullable
+    private Object mSource;
+
+    private ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ImageView imageView = findViewById(R.id.sample_image);
+        mImageView = findViewById(R.id.sample_image);
 
-        GlideApp.with(this)
-                .load("https://mobchn.top/static/svg/flags/1.svg")
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(new SimpleTarget< Drawable>() {
+        Spinner imageSourceView = findViewById(R.id.image_sources);
+        imageSourceView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ImageSource.values()));
+        imageSourceView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ImageSource imageSource =
+                        ((ImageSource) ((ArrayAdapter) parent.getAdapter()).getItem(position));
+                setSource(imageSource);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                setSource(null);
+            }
+        });
+    }
 
-
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        imageView.setImageDrawable(resource);
-                    }
-                });
+    public void setSource(@Nullable ImageSource source) {
+        if (mSource != source) {
+            mSource = source;
+            GlideApp.with(this)
+                    .load(source.getValue())
+                    .apply(GlideOptions.fitCenterTransform())
+                    .into(mImageView);
+        }
     }
 }
