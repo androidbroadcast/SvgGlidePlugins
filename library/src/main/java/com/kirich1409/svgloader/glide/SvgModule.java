@@ -52,8 +52,9 @@ public final class SvgModule extends LibraryGlideModule {
 
     @Override
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
-        registry.register(SVG.class, BitmapDrawable.class, new SvgBitmapDrawableTranscoder(context, glide));
-        registry.append(SVG.class, SVG.class, UnitModelLoader.Factory.getInstance());
+        registry.register(SVG.class, BitmapDrawable.class, new SvgBitmapDrawableTranscoder(context, glide))
+                .append(SVG.class, SVG.class, UnitModelLoader.Factory.getInstance())
+                .append(String.class, String.class, StringLoader.Factory.getInstance());
         registerDecoders(context, registry);
     }
 
