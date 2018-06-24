@@ -52,6 +52,7 @@ public final class RawResourceSvgDecoder extends SvgDecoder<Uri> {
 
     @Override
     protected int getSize(@NonNull Uri source) throws IOException {
-        return SizeUtils.getRawResourceSize(mResources, source);
+        int rawResId = ResourceUtils.getRawResourceId(mResources, source);
+        return SizeUtils.getRawResourceSize(mResources, rawResId);
     }
 }

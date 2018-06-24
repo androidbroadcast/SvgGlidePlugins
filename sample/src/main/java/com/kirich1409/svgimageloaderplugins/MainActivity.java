@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setSource(@Nullable ImageSource source) {
+    @SuppressWarnings("ConstantConditions")
+    private void setSource(@Nullable ImageSource source) {
         if (mSource != source) {
             mSource = source;
             GlideApp.with(this)

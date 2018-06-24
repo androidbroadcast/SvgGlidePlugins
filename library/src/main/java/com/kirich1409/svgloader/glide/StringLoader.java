@@ -35,7 +35,7 @@ final class StringLoader extends UnitModelLoader<String> {
 
         private static final StringLoader.Factory FACTORY = new StringLoader.Factory();
 
-        public static StringLoader.Factory getInstance() {
+        static StringLoader.Factory getInstance() {
             return FACTORY;
         }
 

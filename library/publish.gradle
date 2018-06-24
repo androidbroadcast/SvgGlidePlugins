@@ -1,11 +1,3 @@
-apply plugin: 'digital.wup.android-maven-publish'
-apply plugin: 'com.jfrog.bintray'
-
-task sourceJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier "source"
-}
-
 /*
  * Copyright 2018 Kirill Rozov
  *
@@ -22,26 +14,12 @@ task sourceJar(type: Jar) {
  * limitations under the License.
  */
 
-// Create the pom configuration:
-def pomConfig = {
-    licenses {
-        license {
-            name "The Apache Software License, Version 2.0"
-            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-            distribution "repo"
-        }
-    }
-    developers {
-        developer {
-            id "kirich1409"
-            name "Kirill Rozov"
-            email "kirich1409@gmail.com"
-        }
-    }
+apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
-    scm {
-        url "https://github.com/kirich1409/SvgGlidePlugins.git"
-    }
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "source"
 }
 
 publishing {
@@ -51,11 +29,26 @@ publishing {
             groupId 'com.kirich1409.svgplugin'
             artifactId 'glide4'
             version rootProject.ext.versionName
-            pom.withXml {
-                def root = asNode()
-                root.appendNode('name', 'SvgGlide4Plugin')
-                root.appendNode('url', 'https://github.com/kirich1409/SvgGlidePlugins')
-                root.children().last() + pomConfig
+            pom {
+                name = 'SvgGlide4Plugin'
+                url = 'https://github.com/kirich1409/SvgGlidePlugins'
+                licenses {
+                    license {
+                        name =  "The Apache Software License, Version 2.0"
+                        url =  "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        distribution = "repo"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "kirich1409"
+                        name = "Kirill Rozov"
+                        email = "kirich1409@gmail.com"
+                    }
+                }
+                scm {
+                    url = "https://github.com/kirich1409/SvgGlidePlugins.git"
+                }
             }
 
             artifact sourceJar
@@ -66,7 +59,7 @@ publishing {
 bintray {
     user = System.env.BINTRAY_USER ?: ""
     key = System.env.BINTRAY_API_KEY ?: ""
-    publications = ['mavenAar']
+    publications = 'mavenAar'
 
     pkg {
         repo = 'maven'

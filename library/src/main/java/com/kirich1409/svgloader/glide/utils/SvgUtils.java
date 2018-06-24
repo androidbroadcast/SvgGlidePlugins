@@ -20,7 +20,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
 
@@ -104,17 +103,6 @@ public final class SvgUtils {
         Canvas canvas = new Canvas(bitmap);
         svg.renderToCanvas(canvas);
         return bitmap;
-    }
-
-    @RestrictTo(RestrictTo.Scope.LIBRARY)
-    public interface BitmapProvider {
-
-        @NonNull
-        Bitmap get(
-                @IntRange(from = 0) int width,
-                @IntRange(from = 0) int height,
-                @NonNull Bitmap.Config config
-        );
     }
 
     private SvgUtils() {

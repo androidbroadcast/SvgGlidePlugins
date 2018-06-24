@@ -31,11 +31,11 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
-import com.bumptech.glide.load.resource.bitmap.Downsampler;
 import com.bumptech.glide.load.resource.bitmap.LazyBitmapDrawableResource;
 import com.bumptech.glide.load.resource.gif.GifOptions;
 import com.bumptech.glide.load.resource.transcode.ResourceTranscoder;
 import com.caverock.androidsvg.SVG;
+import com.kirich1409.svgloader.glide.utils.BitmapProvider;
 import com.kirich1409.svgloader.glide.utils.SvgUtils;
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)
@@ -43,7 +43,7 @@ final class SvgBitmapDrawableTranscoder implements ResourceTranscoder<SVG, Bitma
 
     private final BitmapPool mBitmapPool;
     private final Resources mResources;
-    private final SvgUtils.BitmapProvider mBitmapProvider;
+    private final BitmapProvider mBitmapProvider;
 
     SvgBitmapDrawableTranscoder(@NonNull Context context, @NonNull Glide glide) {
         mResources = context.getResources();
@@ -84,7 +84,7 @@ final class SvgBitmapDrawableTranscoder implements ResourceTranscoder<SVG, Bitma
         }
 
         DownsampleStrategy strategy =
-                options == null ? null : options.get(Downsampler.DOWNSAMPLE_STRATEGY);
+                options == null ? null : options.get(DownsampleStrategy.OPTION);
         if (strategy != null) {
             float scaleFactor = strategy.getScaleFactor(
                     Math.round(toTranscode.get().getDocumentWidth()),
@@ -96,7 +96,7 @@ final class SvgBitmapDrawableTranscoder implements ResourceTranscoder<SVG, Bitma
         }
     }
 
-    private static final class PoolBitmapProvider implements SvgUtils.BitmapProvider {
+    private static final class PoolBitmapProvider implements BitmapProvider {
 
         private final BitmapPool mBitmapPool;
 

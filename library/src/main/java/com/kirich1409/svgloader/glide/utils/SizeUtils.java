@@ -18,9 +18,9 @@ package com.kirich1409.svgloader.glide.utils;
 
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
+import android.support.annotation.RawRes;
 import android.support.annotation.RestrictTo;
 
 import java.io.FileDescriptor;
@@ -54,16 +54,17 @@ public final class SizeUtils {
         return SizeUtils.getSize(source.getFileDescriptor());
     }
 
-    public static int getRawResourceSize(@NonNull Resources resources, @NonNull Uri source) throws IOException {
-        int rawResourceId = ResourceUtils.getRawResourceId(resources, source);
+    public static int getRawResourceSize(
+            @NonNull Resources resources, @RawRes int rawResId
+    ) throws IOException {
         try {
-            return SizeUtils.getSize(resources.openRawResourceFd(rawResourceId));
+            return SizeUtils.getSize(resources.openRawResourceFd(rawResId));
         } catch (Resources.NotFoundException e) {
             throw new IOException(e);
         }
     }
 
-    public static int getSize(String string, String encoding) throws IOException {
+    public static int getSize(@NonNull String string, @NonNull String encoding) throws IOException {
         try {
             return string.getBytes(encoding).length;
         } catch (UnsupportedEncodingException e) {
@@ -71,11 +72,11 @@ public final class SizeUtils {
         }
     }
 
-    public static int getSize(String string) throws IOException {
+    public static int getSize(@NonNull String string) throws IOException {
         return getSize(string, "UTF-8");
     }
 
-    public static int getSize(InputStream stream) throws IOException {
+    public static int getSize(@NonNull InputStream stream) throws IOException {
         return stream.available();
     }
 
