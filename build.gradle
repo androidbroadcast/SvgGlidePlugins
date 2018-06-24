@@ -46,7 +46,7 @@ ext {
     targetSdkVersion = 26
     minSdkVersion = 14
 
-    glideVersion = '4.6.1'
+    glideVersion = '4.7.1'
 
     versionName = '1.0.0'
 }
