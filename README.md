@@ -21,7 +21,7 @@ Fot library work don't forget create AppGlideModule like described [here](http:/
 License
 =======
 
-    Copyright 2018 Kirill Rozov
+    Copyright 2019 Kirill Rozov
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
