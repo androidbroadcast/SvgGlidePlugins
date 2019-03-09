@@ -4,6 +4,7 @@
 
 # SvgImageLoaderPlugins
 Plugin for load SVG in Glide 4. Based on [AndroidSVG](http://bigbadaboom.github.io/androidsvg/) library.
+During loading SVG will converted into Bitmap. The solution was selected for better performance of drawing and smaller size of source.
 
 Grab the latest via Gradle:
 ```groovy
