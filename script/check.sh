@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew clean build check -PdisablePreDex
+./gradlew clean build :library:lintDebug -PdisablePreDex

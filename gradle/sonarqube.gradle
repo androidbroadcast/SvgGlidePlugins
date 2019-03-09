@@ -1,0 +1,5 @@
+project(":sample") {
+    sonarqube {
+        skipProject = true
+    }
+}

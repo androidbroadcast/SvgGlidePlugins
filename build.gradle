@@ -15,19 +15,23 @@
  */
 
 buildscript {
-
     repositories {
         google()
-        jcenter()
     }
 
     dependencies {
         //noinspection GradleDependency
         classpath 'com.android.tools.build:gradle:3.4.0-rc01'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath 'digital.wup:android-maven-publish:3.6.2'
     }
 }
+
+plugins {
+    id "org.sonarqube" version "2.7"
+    id "digital.wup.android-maven-publish" version "3.6.2"
+    id "com.jfrog.bintray" version "1.8.4"
+}
+
+apply from: "gradle/sonarqube.gradle"
 
 allprojects {
     repositories {
