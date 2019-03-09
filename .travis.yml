@@ -26,6 +26,3 @@ cache:
 
 script:
   - ./script/check.sh
-
-after_success:
-  - ./script/publish.sh
