@@ -31,8 +31,6 @@ plugins {
     id "com.jfrog.bintray" version "1.8.4"
 }
 
-apply from: "gradle/sonarqube.gradle"
-
 allprojects {
     repositories {
         google()
@@ -54,3 +52,7 @@ ext {
 
     versionName = '1.1.1'
 }
+
+version = versionName
+
+apply from: "gradle/sonarqube.gradle"

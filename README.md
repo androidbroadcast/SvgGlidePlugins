@@ -1,6 +1,7 @@
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-SvgGlidePlugin-green.svg?style=flat )]( https://android-arsenal.com/details/1/6812 )
 [![JCenter Download](https://api.bintray.com/packages/kirich1409/maven/svg-glide-plugin/images/download.svg) ](https://bintray.com/kirich1409/maven/svg-glide-plugin/_latestVersion)
 [![Build Status](https://travis-ci.org/kirich1409/SvgGlidePlugins.svg?branch=master)](https://travis-ci.org/kirich1409/SvgGlidePlugins)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kirich1409_SvgGlidePlugins&metric=alert_status)](https://sonarcloud.io/dashboard?id=kirich1409_SvgGlidePlugins)
 
 # SvgImageLoaderPlugins
 Plugin for load SVG in Glide 4. Based on [AndroidSVG](http://bigbadaboom.github.io/androidsvg/) library.
