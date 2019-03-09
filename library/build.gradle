@@ -56,3 +56,7 @@ dependencies {
 }
 
 apply from: 'publish.gradle'
+
+tasks.withType(Class.forName("com.android.build.gradle.tasks.GenerateBuildConfig")) {
+    enabled = false
+}
