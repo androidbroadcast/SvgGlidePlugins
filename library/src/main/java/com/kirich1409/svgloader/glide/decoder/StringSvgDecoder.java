@@ -30,9 +30,12 @@ import java.io.IOException;
 public final class StringSvgDecoder extends SvgDecoder<String> {
 
     @Override
-    SVG loadSvg(String source, int width, int height, @NonNull Options options)
-            throws SVGParseException {
-        return SVG.getFromString(source);
+    SVG loadSvg(@NonNull String source, int width, int height, @NonNull Options options) throws SvgParseException {
+        try {
+            return SVG.getFromString(source);
+        } catch (SVGParseException e) {
+            throw new SvgParseException(e);
+        }
     }
 
     @Override

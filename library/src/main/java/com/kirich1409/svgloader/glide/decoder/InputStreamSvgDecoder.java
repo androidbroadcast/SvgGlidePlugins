@@ -31,9 +31,12 @@ import java.io.InputStream;
 public final class InputStreamSvgDecoder extends SvgDecoder<InputStream> {
 
     @Override
-    SVG loadSvg(@NonNull InputStream source, int width, int height, @NonNull Options options)
-            throws SVGParseException {
-        return SVG.getFromInputStream(source);
+    SVG loadSvg(@NonNull InputStream source, int width, int height, @NonNull Options options) throws SvgParseException {
+        try {
+            return SVG.getFromInputStream(source);
+        } catch (SVGParseException e) {
+            throw new SvgParseException(e);
+        }
     }
 
     @Override

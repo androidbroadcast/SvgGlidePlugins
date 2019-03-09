@@ -45,9 +45,12 @@ public final class RawResourceSvgDecoder extends SvgDecoder<Uri> {
     }
 
     @Override
-    SVG loadSvg(Uri source, int width, int height, @NonNull Options options)
-            throws SVGParseException {
-        return SVG.getFromResource(mResources, ResourceUtils.getRawResourceId(mResources, source));
+    SVG loadSvg(@NonNull Uri source, int width, int height, @NonNull Options options) throws SvgParseException {
+        try {
+            return SVG.getFromResource(mResources, ResourceUtils.getRawResourceId(mResources, source));
+        } catch (SVGParseException e) {
+            throw new SvgParseException(e);
+        }
     }
 
     @Override

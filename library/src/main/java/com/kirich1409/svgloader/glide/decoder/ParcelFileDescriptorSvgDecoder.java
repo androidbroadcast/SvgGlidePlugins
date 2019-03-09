@@ -22,7 +22,6 @@ import android.support.annotation.RestrictTo;
 
 import com.bumptech.glide.load.Options;
 import com.caverock.androidsvg.SVG;
-import com.caverock.androidsvg.SVGParseException;
 import com.kirich1409.svgloader.glide.utils.SizeUtils;
 
 import java.io.IOException;
@@ -33,14 +32,17 @@ public final class ParcelFileDescriptorSvgDecoder extends SvgDecoder<ParcelFileD
     private final FileDescriptorSvgDecoder mDecoder = new FileDescriptorSvgDecoder();
 
     @Override
-    public boolean handles(@NonNull ParcelFileDescriptor source, @NonNull Options options)
-            throws IOException {
+    public boolean handles(@NonNull ParcelFileDescriptor source, @NonNull Options options) throws IOException {
         return mDecoder.handles(source.getFileDescriptor(), options);
     }
 
     @Override
-    SVG loadSvg(ParcelFileDescriptor source, int width, int height, @NonNull Options options)
-            throws SVGParseException {
+    SVG loadSvg(
+            @NonNull ParcelFileDescriptor source,
+            int width,
+            int height,
+            @NonNull Options options
+    ) throws SvgParseException {
         return mDecoder.loadSvg(source.getFileDescriptor(), width, height, options);
     }
 

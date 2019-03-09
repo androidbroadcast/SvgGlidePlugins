@@ -31,12 +31,11 @@ import java.io.IOException;
 public final class FileSvgDecoder extends SvgDecoder<File> {
 
     @Override
-    SVG loadSvg(@NonNull File source, int width, int height, @NonNull Options options)
-            throws SVGParseException {
+    SVG loadSvg(@NonNull File source, int width, int height, @NonNull Options options) throws SvgParseException {
         try {
             return SvgUtils.getSvg(source);
-        } catch (IOException e) {
-            throw new SVGParseException(e);
+        } catch (IOException | SVGParseException e) {
+            throw new SvgParseException(e);
         }
     }
 

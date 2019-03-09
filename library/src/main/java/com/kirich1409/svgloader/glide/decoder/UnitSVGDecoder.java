@@ -26,7 +26,7 @@ import com.caverock.androidsvg.SVG;
 public final class UnitSVGDecoder extends SvgDecoder<SVG> {
 
     @Override
-    SVG loadSvg(SVG source, int width, int height, @NonNull Options options) {
+    SVG loadSvg(@NonNull SVG source, int width, int height, @NonNull Options options) {
         return source;
     }
 

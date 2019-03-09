@@ -70,8 +70,6 @@ final class SvgBitmapDrawableTranscoder implements ResourceTranscoder<SVG, Bitma
             case PREFER_RGB_565:
                 return Bitmap.Config.RGB_565;
 
-            //noinspection deprecation
-            case PREFER_ARGB_8888_DISALLOW_HARDWARE:
             case PREFER_ARGB_8888:
             default:
                 return Bitmap.Config.ARGB_8888;

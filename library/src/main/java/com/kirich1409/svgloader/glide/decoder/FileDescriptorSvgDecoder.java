@@ -32,12 +32,16 @@ import java.io.IOException;
 public final class FileDescriptorSvgDecoder extends SvgDecoder<FileDescriptor> {
 
     @Override
-    SVG loadSvg(@NonNull FileDescriptor source, int width, int height, @NonNull Options options)
-            throws SVGParseException {
+    SVG loadSvg(
+            @NonNull FileDescriptor source,
+            int width,
+            int height,
+            @NonNull Options options
+    ) throws SvgParseException {
         try {
             return SvgUtils.getSvg(source);
-        } catch (IOException e) {
-            throw new SVGParseException(e);
+        } catch (IOException | SVGParseException e) {
+            throw new SvgParseException(e);
         }
     }
 

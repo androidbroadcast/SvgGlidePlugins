@@ -26,7 +26,6 @@ import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.request.target.Target;
 import com.caverock.androidsvg.SVG;
-import com.caverock.androidsvg.SVGParseException;
 import com.kirich1409.svgloader.glide.SvgResource;
 import com.kirich1409.svgloader.glide.utils.SvgUtils;
 
@@ -50,7 +49,7 @@ public abstract class SvgDecoder<T> implements ResourceDecoder<T, SVG> {
             SvgUtils.fix(svg);
             int[] sizes = getResourceSize(svg, width, height);
             return new SvgResource(svg, sizes[0], sizes[1], sourceSize);
-        } catch (SVGParseException e) {
+        } catch (SvgParseException e) {
             throw new IOException("Cannot load SVG", e);
         }
     }
@@ -73,6 +72,6 @@ public abstract class SvgDecoder<T> implements ResourceDecoder<T, SVG> {
     @IntRange(from = 0)
     protected abstract int getSize(@NonNull T source) throws IOException;
 
-    abstract SVG loadSvg(T source, int width, int height, @NonNull Options options)
-            throws SVGParseException;
+    abstract SVG loadSvg(@NonNull T source, int width, int height, @NonNull Options options)
+            throws SvgParseException;
 }
