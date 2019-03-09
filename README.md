@@ -11,7 +11,7 @@ repository {
    jcenter()
 }
 
-implementation 'com.kirich1409.svgplugin:glide4:1.1.0'
+implementation 'com.kirich1409.svgplugin:glide4:1.1.1'
 ```
 
 Library requires Android SDK 15+
