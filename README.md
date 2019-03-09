@@ -6,7 +6,7 @@
 Plugin for load SVG in Glide 4. Based on [AndroidSVG](http://bigbadaboom.github.io/androidsvg/) library.
 
 Grab the latest via Gradle:
-```
+```groovy
 repository {
    jcenter()
 }
@@ -17,6 +17,13 @@ implementation 'com.kirich1409.svgplugin:glide4:1.1.1'
 Library requires Android SDK 15+
 
 Fot library work don't forget create AppGlideModule like described [here](http://bumptech.github.io/glide/doc/generatedapi.html).
+
+```java
+@GlideModule
+public class SampleGlideModule extends AppGlideModule {
+    // Any additional configuration for the SvgGlide4Plugin not required
+}
+```
 
 License
 =======
