@@ -48,7 +48,7 @@ ext {
     glideVersion = '4.10.0'
     androidSvgVersion = '1.4'
 
-    versionName = '1.1.1'
+    versionName = '1.2.0'
 }
 
 version = versionName
