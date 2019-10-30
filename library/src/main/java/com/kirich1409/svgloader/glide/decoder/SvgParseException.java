@@ -1,7 +1,7 @@
 package com.kirich1409.svgloader.glide.decoder;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 final class SvgParseException extends Exception {

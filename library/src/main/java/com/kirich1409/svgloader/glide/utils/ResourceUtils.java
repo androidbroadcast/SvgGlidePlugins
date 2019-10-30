@@ -19,10 +19,10 @@ package com.kirich1409.svgloader.glide.utils;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RawRes;
-import android.support.annotation.RestrictTo;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RawRes;
+import androidx.annotation.RestrictTo;
 
 import java.util.List;
 

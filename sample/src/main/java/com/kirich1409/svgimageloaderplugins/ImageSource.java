@@ -17,7 +17,7 @@
 package com.kirich1409.svgimageloaderplugins;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public enum ImageSource {
 

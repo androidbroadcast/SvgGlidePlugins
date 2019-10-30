@@ -16,9 +16,9 @@
 
 package com.kirich1409.svgloader.glide;
 
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.RestrictTo;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import com.bumptech.glide.load.engine.Resource;
 import com.caverock.androidsvg.SVG;

@@ -17,8 +17,9 @@
 package com.kirich1409.svgloader.glide.decoder;
 
 import android.os.ParcelFileDescriptor;
-import android.support.annotation.NonNull;
-import android.support.annotation.RestrictTo;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import com.bumptech.glide.load.Options;
 import com.caverock.androidsvg.SVG;
