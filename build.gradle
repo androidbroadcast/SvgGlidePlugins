@@ -26,7 +26,6 @@ buildscript {
 }
 
 plugins {
-    id "org.sonarqube" version "2.7"
     id "digital.wup.android-maven-publish" version "3.6.2"
     id "com.jfrog.bintray" version "1.8.4"
 }
@@ -54,5 +53,3 @@ ext {
 }
 
 version = versionName
-
-apply from: "gradle/sonarqube.gradle"
