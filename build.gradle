@@ -46,7 +46,7 @@ ext {
     targetSdkVersion = 28
     minSdkVersion = 14
 
-    glideVersion = '4.9.0'
+    glideVersion = '4.10.0'
     androidSvgVersion = '1.3'
 
     versionName = '1.1.1'
