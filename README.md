@@ -9,7 +9,7 @@ During loading SVG will converted into Bitmap. The solution was selected for bet
 Grab the latest via Gradle with Groovy DSL:
 ```groovy
 repository {
-   jcenter()
+   maven(url = 'https://dl.bintray.com/kirich1409/maven/')
 }
 
 implementation 'com.kirich1409.svgplugin:glide4:1.2.0'
@@ -18,7 +18,7 @@ implementation 'com.kirich1409.svgplugin:glide4:1.2.0'
 or with Kotlin DSL
 ```kotlin
 repository {
-   jcenter()
+   maven(url = "https://dl.bintray.com/kirich1409/maven/")
 }
 
 implementation("com.kirich1409.svgplugin:glide4:1.2.0")
