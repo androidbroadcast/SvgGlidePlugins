@@ -27,4 +27,3 @@ cache:
 
 script:
   - ./script/check.sh
-  - ./script/sonar_scan.sh
