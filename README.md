@@ -12,7 +12,7 @@ repository {
    jcenter()
 }
 
-implementation 'com.kirich1409.svgplugin:svg-glide4-plugin:1.2.0'
+implementation 'com.kirich1409.svgplugin:svg-glide4-plugin:1.2.1'
 ```
 
 or with Kotlin DSL
@@ -21,7 +21,7 @@ repository {
    jcenter()
 }
 
-implementation("com.kirich1409.svgplugin:svg-glide4-plugin:1.2.0")
+implementation("com.kirich1409.svgplugin:svg-glide4-plugin:1.2.1")
 ```
 
 Library requires Android SDK 15+
