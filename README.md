@@ -12,7 +12,7 @@ repository {
    maven(url = 'https://dl.bintray.com/kirich1409/maven/')
 }
 
-implementation 'com.kirich1409.svgplugin:glide4:1.2.0'
+implementation 'com.kirich1409.svgplugin:svg-glide4-plugin:1.2.0'
 ```
 
 or with Kotlin DSL
@@ -21,7 +21,7 @@ repository {
    maven(url = "https://dl.bintray.com/kirich1409/maven/")
 }
 
-implementation("com.kirich1409.svgplugin:glide4:1.2.0")
+implementation("com.kirich1409.svgplugin:svg-glide4-plugin:1.2.0")
 ```
 
 Library requires Android SDK 15+
