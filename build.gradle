@@ -39,7 +39,7 @@ allprojects {
 
 ext {
     // Update required build tools in Travis CI build script
-    buildToolsVersion = '29.0.2'
+    buildToolsVersion = '29.0.3'
 
     compileSdkVersion = 29
     targetSdkVersion = 28
