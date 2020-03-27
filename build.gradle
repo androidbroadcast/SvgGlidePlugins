@@ -26,7 +26,7 @@ buildscript {
 }
 
 plugins {
-    id "digital.wup.android-maven-publish" version "3.6.2"
+    id 'maven-publish'
     id "com.jfrog.bintray" version "1.8.4"
 }
 

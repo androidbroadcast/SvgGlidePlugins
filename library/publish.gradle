@@ -14,53 +14,64 @@
  * limitations under the License.
  */
 
-apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
 tasks.register("sourceJar", Jar) {
     from android.sourceSets.main.java.srcDirs
     archiveClassifier.set('sources')
 }
 
-publishing {
-    publications {
-        mavenAar(MavenPublication) {
-            from components.android
-            groupId 'com.kirich1409.svgplugin'
-            artifactId 'svg-glide4-plugin'
-            version rootProject.ext.versionName
-            pom {
-                name = 'SvgGlide4Plugin'
-                url = 'https://github.com/kirich1409/SvgGlidePlugins'
-                licenses {
-                    license {
-                        name = "The Apache Software License, Version 2.0"
-                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                        distribution = "repo"
-                    }
-                }
-                developers {
-                    developer {
-                        id = "kirich1409"
-                        name = "Kirill Rozov"
-                        email = "krl.rozov@gmail.com"
-                    }
-                }
-                scm {
-                    url = "https://github.com/kirich1409/SvgGlidePlugins.git"
-                }
-            }
+afterEvaluate {
+    publishing {
+        publications {
+            releaseAar(MavenPublication) {
+                from components.release
+                groupId 'com.kirich1409.svgplugin'
+                artifactId 'svg-glide4-plugin'
+                version rootProject.ext.versionName
 
-            artifact sourceJar
+                pom {
+                    name = 'SvgGlide4Plugin'
+                    url = 'https://github.com/kirich1409/SvgGlidePlugins'
+                    licenses {
+                        license {
+                            name = "The Apache Software License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                            distribution = "repo"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "kirich1409"
+                            name = "Kirill Rozov"
+                            email = "krl.rozov@gmail.com"
+                        }
+                    }
+                    scm {
+                        url = "https://github.com/kirich1409/SvgGlidePlugins.git"
+                    }
+                }
+
+                artifact sourceJar
+            }
+        }
+
+        repositories {
+            maven {
+                name = "buildDir"
+                // change to point to your repo, e.g. http://my.org/repo
+                url = "$buildDir/repo"
+            }
         }
     }
 }
 
 bintray {
-    user = project.hasProperty('user') ? project.property('user') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('apiKey') ? project.property('apiKey') : System.getenv('BINTRAY_API_KEY')
+    user = rootProject.hasProperty('user') ? rootProject.property('user') : System.getenv('BINTRAY_USER')
+    key = rootProject.hasProperty('apiKey') ? rootProject.property('apiKey') : System.getenv('BINTRAY_API_KEY')
 
-    publications = ["mavenAar"]
+    publications = ["releaseAar"]
 
     pkg {
         repo = 'maven'
